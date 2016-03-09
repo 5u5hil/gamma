@@ -15,11 +15,29 @@ angular.module('your_app_name.controllers', ['ionic', 'ngCordova'])
         })
 
 // APP
-        .controller('AppCtrl', function ($scope, $state, $ionicConfig, $rootScope, $ionicLoading, $ionicHistory, $timeout) {
+        .controller('AppCtrl', function ($scope,$http, $state, $ionicConfig, $rootScope, $ionicLoading, $ionicHistory, $timeout) {
 
             $rootScope.imgpath = domain + "/public/frontend/user/";
             $rootScope.attachpath = domain + "/public";
-
+             $scope.interface = window.localStorage.getItem('interface_id');
+            $http({
+                    method: 'GET',
+                    url: domain + 'get-sidemenu-lang',
+                    params: {interface:$scope.interface}
+                }).then(function successCallback(response) {
+                    
+                   
+                    if (response.data) {
+                        
+                        $scope.menutext = response.data.dataMenu;
+                        $scope.language = response.data.lang.language;
+                    
+                    } else {
+                      
+                    }
+                }, function errorCallback(response) {
+                   // console.log(response);
+                });
             if (window.localStorage.getItem('id') != null) {
                 $rootScope.userLogged = 1;
                 $rootScope.username = window.localStorage.getItem('fname');
@@ -348,6 +366,23 @@ angular.module('your_app_name.controllers', ['ionic', 'ngCordova'])
         .controller('CategoryListCtrl', function ($scope, $http, $stateParams, $rootScope) {
             if (get('id') != null) {
                 $rootScope.userLogged = 1;
+                 $scope.interface = window.localStorage.getItem('interface_id');
+             $http({
+                    method: 'GET',
+                    url: domain + 'get-categoty-lang',
+                    params: {interface:$scope.interface}
+                }).then(function successCallback(response) {
+                     if (response.data.dataCat) {
+                        
+                         $scope.cattext = response.data.dataCat;
+                          $scope.language = response.data.lang.language;
+                        
+                    } else {
+                      
+                    }
+                }, function errorCallback(response) {
+                   // console.log(response);
+                });
             }
         })
 

@@ -22,12 +22,12 @@
                         </pre-img>
                     </div>
                     <h2 class="greeting">Hi {{username}} </h2>
-                    <p class="message">Welcome </p>
+                    <p class="message">{{menutext.welcome[language]}} </p>
                 </ion-item>
 
                 <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.category-list">
                     <i class="icon ion-android-home"></i>
-                    <h2 class="menu-text">Home</h2>
+                    <h2 class="menu-text">{{menutext.home[language]}}</h2>
                 </ion-item>
 				
 				<!--   <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.test">
@@ -38,12 +38,12 @@
 
 				<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.consultations-list">
                     <i class="icon ion-medkit"></i>
-                    <h2 class="menu-text">Consultations</h2>
+                    <h2 class="menu-text">{{menutext.consultations[language]}}</h2>
                 </ion-item>
 				
                 <ion-item class="item-icon-left logoutbtn" nav-clear menu-close ng-if="userLogged==1" ng-click="logout()" >
                     <i class="icon ion-android-unlock"></i>
-                    <h2 class="menu-text">Logout</h2>
+                    <h2 class="menu-text">{{menutext.logout[language]}}</h2>
                 </ion-item> 
 
 
