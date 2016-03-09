@@ -4,7 +4,7 @@ var subscriber;
 angular.module('your_app_name.controllers', ['ionic', 'ngCordova'])
 
         .controller('AuthCtrl', function ($scope, $state, $ionicConfig, $rootScope) {
-            $scope.interface = window.localStorage.setItem('interface_id', '5');
+            $scope.interface = window.localStorage.setItem('interface_id', '3');
             if (window.localStorage.getItem('id') != null) {
                 $rootScope.userLogged = 1;
                 $rootScope.username = window.localStorage.getItem('fname');
