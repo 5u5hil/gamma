@@ -1,6 +1,6 @@
 <ion-view cache-view="false" class="records-view">
     <ion-nav-title>
-        <span>{{doctor[0].fname}} {{doctor[0].lname}}</span>
+        <span>{{doctor[0].fname}} {{doctor[0].lname}} --- {{doctor[0].user_lang[language]}}</span>
     </ion-nav-title>
     <!--  <ion-nav-buttons side="right">
          <button class="button button-icon button-clear ion-person">
@@ -14,7 +14,7 @@
 
                 <div class="card-left"><img class="user-image-circle" ng-if="doc.image != ''" ng-src="{{imgpath}}{{doc.image}}"><img class="user-image-circle" ng-if="doc.image == ''" ng-src="img/default-user.jpg"></div>
                 <div class="card-detail txt-left">
-                    <p><strong> {{doc.fname}} {{doc.lname}}</strong><br/>
+                    <p><strong> {{doctor[0].user_lang[language]}}</strong><br/>
                         <span ng-repeat="spec in doc.specializations">
                             {{spec.specialization}}{{$last==true? '': ',&nbsp;'}}
                         </span></p>
@@ -113,7 +113,7 @@
         <div class="card-content">
         <div class="card-left"><img class="user-image-circle" ng-if="doc.image != ''" ng-src="{{imgpath}}{{doc.image}}"><img class="user-image-circle" ng-if="doc.image == ''" ng-src="img/default-user.jpg"></div>
         <div class="card-detail txt-left">
-        <p><strong> {{doc.fname}} {{doc.lname}}</strong><br/>
+        <p><strong> {{doctor[0].user_lang[language]}}</strong><br/>
         <span ng-repeat="spec in doc.specializations">
         {{spec.specialization}}{{$last==true? '': ',&nbsp;'}}
         </span></p>

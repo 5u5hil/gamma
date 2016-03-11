@@ -1239,6 +1239,7 @@ angular.module('your_app_name.controllers', ['ionic', 'ngCordova'])
             }).then(function successCallback(response) {
                 $ionicLoading.hide();
                 $scope.doctors = response.data.user;
+                //$scope.doctorsName = response.data.user_lang;
                 angular.forEach($scope.doctors, function (value, key) {
                     $http({
                         method: 'GET',
@@ -1643,8 +1644,8 @@ angular.module('your_app_name.controllers', ['ionic', 'ngCordova'])
                         alert('Sorry, Your payment time expired');
                         window.localStorage.removeItem('kookooid');
                         $timeout(function () {
-                            // $state.go('app.consultation-profile', {'id':$scope.product[0].user_id}, {reload: true});
-                            $state.go('app.consultations-list', {reload: true});
+                             $state.go('app.consultation-profile', {'id':$scope.product[0].user_id}, {reload: true});
+                            //$state.go('app.consultations-list', {reload: true});
                         }, 3000);
                     }, function errorCallback(response) {
                         $state.go('app.consultations-list', {reload: true});
