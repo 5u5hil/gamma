@@ -1,6 +1,6 @@
 <ion-view class="payment-view">
     <ion-nav-title>
-        <span>Payment</span>
+        <span>{{payment[language]}}</span>
     </ion-nav-title>
     <ion-content>
         <div class="content-section">
@@ -37,20 +37,20 @@
                     <my-tab title="Pay Now" ng-if="mode == 1 || mode == 2 ">
                         <div class="tabcontainer" style="margin-top:0;">
                             <h4 class="txt-centre" style="margin-top:10px; margin-bottom:10px;">Price: INR {{product[0].interfacePrice}}</h4>
-                            <div class="row" ng-if="apply != 1">
+                         <!-- <div class="row" ng-if="apply != 1">
                                 <div class="col col-75">
                                     <input type="text" class="custominput" id='coupon' Placeholder="Enter Coupon Code" ng-model="ccode" />
                                     <span id="coupon_error"></span>
                                 </div>
                                 <div class="col">
                                     <button class="button button-small button-assertive csbtn" ng-click="applyCouponCode(ccode)">Apply</button>
-                                    <!-- 	<button class="button button-small button-assertive csbtn">Undo</button> -->
+                                    
                                 </div>
                             </div>
                             <div class="fg txt-centre" ng-if="apply == 1">Applied Discount</div>
-                            <div class="pprice" ng-if="apply == 1">Final Price: INR {{product[0].interfacePrice - discountApplied}}</div>
+                            <div class="pprice" ng-if="apply == 1">Final Price: INR {{product[0].interfacePrice - discountApplied}}</div> -->
                             <div class="section-footer"> <!---ui-sref="app.success"-->
-                                <a ng-if="mode == 1 || mode == 2 " ng-click="payNow(product[0].interfacePrice - discountApplied)" class="button button-full button-positive">Pay Now</a>                                
+                                <a ng-if="mode == 1 || mode == 2 " ng-click="payNow(product[0].interfacePrice - discountApplied)" class="button button-full button-positive">{{confirm[language]}}</a>                                
                             </div>
                             <p class="agreelink">
                                 By Clicking on the button above, you agree to the <span dynamic-anchor-fix><a href="https://doctrs.in/termsandconditions.pdf" target="_blank">terms & conditions</a></span> and have read the <span dynamic-anchor-fix><a href="https://doctrs.in/privacypolicy.pdf" target="_blank">privacy policy</a> </span> & <span dynamic-anchor-fix><a href="https://doctrs.in/CancellationPolicy.pdf" target="_blank">cancellation policy.</a></span>

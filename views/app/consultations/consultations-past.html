@@ -4,10 +4,10 @@
     </ion-nav-title>
     <ion-content>
 		<div class="row tabnav">
-			<div class="col"><a nav-clear menu-close ui-sref="app.consultations-list" >Book</a></div>
-		<div class="col"><a nav-clear menu-close ui-sref="app.consultations-current" >Active</a></div>
-		<div class="col"><a nav-clear menu-close ui-sref="app.consultations-past" class="active">Past</a></div>
-		 </div>
+			<div class="col"><a nav-clear menu-close ui-sref="app.consultations-list">{{tabmenu.book[language]}}</a></div>
+		<div class="col"><a nav-clear menu-close ui-sref="app.consultations-current" >{{tabmenu.active[language]}}</a></div>
+		<div class="col"><a nav-clear menu-close ui-sref="app.consultations-past" class="active">{{tabmenu.past[language]}}</a></div>
+		</div>
 		 
 		 
 		 <div class="" ng-if="userLogged = 1">

@@ -8,10 +8,10 @@
     </ion-nav-buttons>-->
     <ion-content>
 		<div class="row tabnav">
-			<div class="col"><a nav-clear menu-close ui-sref="app.consultations-list">Book</a></div>
-		<div class="col"><a nav-clear menu-close ui-sref="app.consultations-current" class="active" >Active</a></div>
-		<div class="col"><a nav-clear menu-close ui-sref="app.consultations-past">Past</a></div>
-		 </div>
+			<div class="col"><a nav-clear menu-close ui-sref="app.consultations-list" >{{tabmenu.book[language]}}</a></div>
+		<div class="col"><a nav-clear menu-close ui-sref="app.consultations-current" class="active" >{{tabmenu.active[language]}}</a></div>
+		<div class="col"><a nav-clear menu-close ui-sref="app.consultations-past">{{tabmenu.past[language]}}</a></div>
+		</div>
 		 
 		 
 		 <div class=""  ng-if="userLogged = 1">             

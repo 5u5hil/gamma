@@ -1,6 +1,6 @@
 <ion-view cache-view="false" class="records-view">
     <ion-nav-title>
-        <span>{{spec[0].specialization}}</span>
+        <span>{{spec[0][language]}}</span>
     </ion-nav-title>
     <!--  <ion-nav-buttons side="right">
          <button class="button button-icon button-clear ion-person">
@@ -27,21 +27,21 @@
                             <div class="card-detail txt-left">
                                 <p><strong>{{doc.fname}} {{doc.lname}}</strong><br/>
                                     <span ng-repeat="spec in doc.specializations">
-                                        {{spec.specialization}}{{$last==true? '': ',&nbsp;'}} 
+                                        {{spec[language]}}{{$last==true? '': ',&nbsp;'}} 
                                     </span></p>
                             </div>
                             <div class="row txt-left">
-                                <div class="col"><p><strong>Experience</strong><br/>{{doc.exp}}</p></div>	
-                                <div class="col"><p><strong>Qualification</strong><br/>
+                                <div class="col"><p><strong>{{dataservice.experience[language]}}</strong><br/>{{doc.exp}}</p></div>	
+                                <div class="col"><p><strong>{{dataservice.qualification[language]}}</strong><br/>
                                         <span ng-repeat="qual in doc.qualifications">{{qual.qualification}}{{$last==true? '': ',&nbsp;'}}</span></p></div>	
                             </div>
                             <div class="row txt-left">
-                                <div class="col"><p><strong>Languages</strong><br/><span ng-repeat="lang in doc.languages">
-                                            {{lang.language}}{{$last==true? '': ',&nbsp;'}}
+                                <div class="col"><p><strong>{{dataservice.languages[language]}}</strong><br/><span ng-repeat="lang in doc.languages">
+                                            {{lang[language]}}{{$last==true? '': ',&nbsp;'}}
                                         </span></p></div>	
-                                <div class="col"><p><strong>Focus Area</strong><br/>
+                                <div class="col"><p><strong>{{dataservice.focus_area[language]}}</strong><br/>
                                         <span ng-repeat="focus in doc.focuses">
-                                            {{focus.focus}}{{$last==true? '': ',&nbsp;'}}
+                                            {{focus[language]}}{{$last==true? '': ',&nbsp;'}}
                                         </span></p></div>	
                             </div>
                             <div class="clr"></div>

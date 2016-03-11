@@ -8,16 +8,17 @@
     </ion-nav-buttons>-->
     <ion-content>
 		<div class="row tabnav">
-			<div class="col"><a nav-clear menu-close ui-sref="app.consultations-list" class="active">Book</a></div>
-		<div class="col"><a nav-clear menu-close ui-sref="app.consultations-current" >Active</a></div>
-		<div class="col"><a nav-clear menu-close ui-sref="app.consultations-past">Past</a></div>
+			<div class="col"><a nav-clear menu-close ui-sref="app.consultations-list" class="active">{{tabmenu.book[language]}}</a></div>
+		<div class="col"><a nav-clear menu-close ui-sref="app.consultations-current" >{{tabmenu.active[language]}}</a></div>
+		<div class="col"><a nav-clear menu-close ui-sref="app.consultations-past">{{tabmenu.past[language]}}</a></div>
 		</div>
-		 
-	<div class="page-data">
+		
+	<div class="page-data"> 
 	<div class="list miscellaneous-functionalities">
-                            <a class="item  item-icon-right" ui-sref="app.consultation-cards({'id':spec.category_id, 'res' : 'json'})"  ng-repeat="spec in specializations| orderBy:'specialization' |filter : searchKeyword ">
+            
+                            <a class="item  item-icon-right" ui-sref="app.consultation-cards({'id':spec.id, 'res' : 'json'})"  ng-repeat="spec in specializations "><!--| orderBy:'specialization' |filter : searchKeyword-->
                                 <div>
-                                    <span class="stitle">{{spec.specialization}}</span>
+                                    <span class="stitle">{{spec[language]}}</span>
                                     <!-- <p class=""><label ng-repeat="focus in spec.focuses">{{focus.focus}}, </label>{{spec.description}}</p>-->
                                 </div>
                                 <i class="icon ion-ios-arrow-right"></i>

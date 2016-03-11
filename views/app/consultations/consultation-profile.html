@@ -31,7 +31,7 @@
                     <div class="schedule">
                         <my-tabs class="themetabs">
                             <div ng-repeat="serv in services">
-                                <my-tab  icon="ion-calendar tabicon" title="Scheduled Video"  ng-if="serv == 1">
+                                <my-tab  icon="ion-calendar tabicon" title="{{scheduled_video[language]}}"  ng-if="serv == 1">
                                     <div class="tabc2">
                                         <div class="item-price">Price : INR {{videoProd.interfacePrice}}</div>
                                         <div class="mt15"> 
@@ -50,10 +50,10 @@
                                                     </li>
                                                 </ul>
                                                 <div class="sche-date">
-                                                    <div class="leftarrow" ng-click="getFirstSlots(vs.supersaas_id, $index, serv)">Earliest Slot</div> 
+                                                    <div class="leftarrow" ng-click="getFirstSlots(vs.supersaas_id, $index, serv)">{{earliest_slot[language]}}</div> 
                                                     <input type="date" ng-model="schdate[$index]" value="schdate[$index]|dateFormat1" ng-change="getNextSlots(schdate[$index], vs.supersaas_id, $index, serv)"/>
                                                     <input type="hidden" ng-model="nextdate[$index]" value="nextdate[$index]|datetime"/>
-                                                    <div class="rightarrow" ng-click="getNextSlots(nextdate, vs.supersaas_id, $index, serv)">Next Slot</div>
+                                                    <div class="rightarrow" ng-click="getNextSlots(nextdate, vs.supersaas_id, $index, serv)">{{next_slot[language]}}</div>
                                                 </div>
                                                 <div ng-if="schV[$index] == vs.supersaas_id">
                                                     {{vSch[$index]==''? 'No slots available':''}}
@@ -66,12 +66,12 @@
                                                 </div>
                                             </div>
                                             <div class="section-footer">   
-                                                <a class="button button-full button-positive" ng-click="bookAppointment(videoProd.id, serv)">Proceed</a>
+                                                <a class="button button-full button-positive" ng-click="bookAppointment(videoProd.id, serv)">{{procced[language]}}</a>
                                             </div>	
                                         </div>
                                     </div>
                                 </my-tab>
-                                <my-tab  icon="ion-chatboxes tabicon" title="Chat" ng-if="serv == 2">
+                                <my-tab  icon="ion-chatboxes tabicon" title="{{chat[language]}}" ng-if="serv == 2">
                                     <div class="tabc2">
                                         <div class="item-price">Price : INR {{chatProd.interfacePrice}}</div>
                                         <div class="tabcontainer"> 
@@ -79,14 +79,14 @@
                                                 <li><strong>{{chatProd.desc}}</strong></li>
                                             </ul>
                                             <p>
-                                                <button class="button button-block button-positive" ng-click="bookChatAppointment(chatProd.id, serv)"> Proceed</button>
+                                                <button class="button button-block button-positive" ng-click="bookChatAppointment(chatProd.id, serv)"> {{procced[language]}}</button>
                                             </p>
                                         </div>
                                     </div>
                                 </my-tab>
                             </div>
                             <div ng-if="instVideo != ''">
-                                <my-tab title="Instant Video" icon="ion-ios-videocam tabicon" ng-click="doit();">
+                                <my-tab title="{{instant_video[language]}}" icon="ion-ios-videocam tabicon" ng-click="doit();">
                                     <div class="tabc2">
                                         <div class="item-price">Price : INR {{instVideo.interfacePrice}}</div>
                                         <div class="tabcontainer"> 
@@ -94,7 +94,7 @@
                                                 <li><strong>Instant video consult</strong></li>
                                             </ul>
                                             <p>
-                                                <button class="button button-block button-positive" ng-click="checkAvailability(instVideo.user_id, instVideo.id)"> Proceed</button>
+                                                <button class="button button-block button-positive" ng-click="checkAvailability(instVideo.user_id, instVideo.id)"> {{procced[language]}}</button>
                                             </p>
                                         </div>
                                     </div>

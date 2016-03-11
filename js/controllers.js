@@ -1171,7 +1171,7 @@ angular.module('your_app_name.controllers', ['ionic', 'ngCordova'])
             }
             $scope.interface = window.localStorage.getItem('interface_id');
             $scope.imgpath = domain;
-            $scope.specializations = {};
+            //$scope.specializations = {};
             $scope.userId = get('id');
             $scope.curTime = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
             $ionicLoading.show({template: 'Loading...'});
@@ -1181,7 +1181,10 @@ angular.module('your_app_name.controllers', ['ionic', 'ngCordova'])
                 params: {userId: $scope.userId, interface: $scope.interface}
             }).then(function successCallback(response) {
                 $ionicLoading.hide();
+                console.log(response.data);
                 $scope.specializations = response.data.spec;
+                $scope.tabmenu = response.data.tabmenu;
+                $scope.language = response.data.lang.language;
                 //Video
                 $scope.video_time = response.data.video_time;
                 $scope.video_app = response.data.video_app;
@@ -1243,8 +1246,11 @@ angular.module('your_app_name.controllers', ['ionic', 'ngCordova'])
                         params: {id: value.id, interface: $scope.interface}
                     }).then(function successCallback(responseData) {
                         $ionicLoading.hide();
+                        console.log(responseData)
                         $scope.getDprice = responseData.price;
-                        $scope.docServices[key] = responseData.data;
+                        $scope.docServices[key] = responseData.data.data;
+                        $scope.language = responseData.data.lang.language;
+                        $scope.dataservice = responseData.data.dataservice;
                     }, function errorCallback(response) {
                         console.log(response);
                     });
@@ -1279,7 +1285,7 @@ angular.module('your_app_name.controllers', ['ionic', 'ngCordova'])
                 url: domain + 'doctors/get-details',
                 params: {id: $stateParams.id, interface: $scope.interface}
             }).then(function successCallback(response) {
-                console.log(response.data);
+                console.log("@@@@"+response.data.lang.language);
                 $scope.doctor = response.data.user;
                 $scope.videoProd = response.data.video_product;
                 $scope.instVideo = response.data.inst_video;
@@ -1297,6 +1303,14 @@ angular.module('your_app_name.controllers', ['ionic', 'ngCordova'])
                 $scope.chatInc = response.data.chat_inclusions;
                 $scope.packages = response.data.packages;
                 $scope.services = response.data.services;
+                $scope.chat = response.data.chat;
+                $scope.instant_video = response.data.instant_video;
+                 $scope.earliest_slot = response.data.earliest_slot;
+                  $scope.next_slot = response.data.next_slot;
+                $scope.scheduled_video = response.data.scheduled_video;
+                $scope.procced = response.data.procced;
+                  
+                $scope.language = response.data.lang.language;
                 //console.log("prodId " + $scope.instVideo + "popopo");
                 //$ionicLoading.hide();
                 angular.forEach($scope.videoSch, function (value, key) {
@@ -1387,6 +1401,7 @@ angular.module('your_app_name.controllers', ['ionic', 'ngCordova'])
             }
 
             $scope.checkAvailability = function (uid, prodId) {
+                  $scope.interface = window.localStorage.getItem('interface_id');
                 console.log("prodId " + prodId);
                 console.log("uid " + uid);
                 $rootScope.$broadcast('loading:hide');
@@ -1394,13 +1409,13 @@ angular.module('your_app_name.controllers', ['ionic', 'ngCordova'])
                 $http({
                     method: 'GET',
                     url: domain + 'kookoo/check-doctor-availability',
-                    params: {id: uid}
+                    params: {id: uid,interface:$scope.interface}
                 }).then(function successCallback(responseData) {
-                    var dataInfo = responseData.data.split('-');
-                    console.log(dataInfo);
-                    if (responseData.data == 1) {
-
-                        $state.go('app.checkavailable', {'data': prodId, 'uid': uid});
+                    
+                    $scope.check_availability = responseData.data.check_availability
+                    $scope.language = responseData.data.lang.language;
+                    if (responseData.data.status == 1) {
+                      $state.go('app.checkavailable', {'data': prodId, 'uid': uid});
                     } else {
                         alert('Sorry. The specialist is currently unavailable. Please try booking a scheduled video or try again later.');
                     }
@@ -1654,9 +1669,15 @@ angular.module('your_app_name.controllers', ['ionic', 'ngCordova'])
                 url: domain + 'doctors/get-order-review',
                 params: {id: $scope.supid, prodId: $scope.prodid, interface: $scope.interface}
             }).then(function successCallback(responseData) {
-                console.log(responseData.data);
+                console.log(responseData.data.payment);
                 $ionicLoading.show({template: 'Loading...'});
                 //$ionicLoading.hide();
+                
+                $scope.payment = responseData.data.payment;
+                $scope.confirm = responseData.data.confirm;
+                $scope.language = responseData.data.lang.language;
+                
+                
                 $scope.product = responseData.data.prod;
                 $scope.prod_inclusion = responseData.data.prod_inclusion;
                 $scope.doctor = responseData.data.doctor;
@@ -2222,6 +2243,20 @@ angular.module('your_app_name.controllers', ['ionic', 'ngCordova'])
         .controller('CheckavailableCtrl', function ($scope, $rootScope, $ionicLoading, $state, $http, $stateParams, $timeout, $ionicModal, $ionicPopup) {
             $scope.data = $stateParams.data;
             $scope.uid = $stateParams.uid;
+             $scope.interface = window.localStorage.getItem('interface_id');
+            $http({
+                    method: 'GET',
+                    url: domain + 'kookoo/check-doctor-availability',
+                    params: {id: $scope.uid,interface:$scope.interface}
+                }).then(function successCallback(responseData) {
+                    
+                    $scope.check_availability = responseData.data.check_availability
+                     $scope.instant_video = responseData.data.instant_video
+                    
+                    $scope.language = responseData.data.lang.language;
+                    
+                });
+            
             /* patient confirm */
             $scope.showConfirm = function () {
                 var confirmPopup = $ionicPopup.confirm({
